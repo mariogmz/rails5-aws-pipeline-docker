@@ -1,5 +1,5 @@
 FROM ruby:2.5
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y build-essential nodejs postgresql-client libpq-dev
 RUN mkdir /mariogmz
 WORKDIR /mariogmz
 COPY Gemfile /mariogmz/Gemfile

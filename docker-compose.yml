@@ -7,16 +7,27 @@ services:
       POSTGRES_PASSWORD: mariogmz123
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  web_api:
+  api:
     build: .
     environment:
       DB_HOST: db
       DB_USER: mariogmz
       DB_PASSWORD: mariogmz123
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/mariogmz
     ports:
-      - "3001:3001"
+      - "3001:3000"
     depends_on:
       - db
+  web:
+    image: "node:10-alpine"
+    user: "node"
+    working_dir: /mariogmz/react-app
+    volumes:
+      - ./react-app:/mariogmz/react-app
+    ports:
+      - "3000:3000"
+    command: "yarn start"
+    depends_on:
+      - api
