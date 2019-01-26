@@ -1,5 +1,6 @@
 FROM ruby:2.5
-ENV RAILS_ROOT /src
+ENV RAILS_ROOT /opt/src
+ENV PORT 3000
 
 # Install dependencies
 RUN apt-get update -qq \
@@ -25,3 +26,6 @@ COPY . $RAILS_ROOT/
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+
+EXPOSE $PORT
+CMD ["bash", "-c", "rails server -b 0.0.0.0 -p $PORT"]
