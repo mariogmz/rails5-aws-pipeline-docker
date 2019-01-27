@@ -18,5 +18,6 @@ test:
 
 production:
   <<: *postgres
+  database: mariogmz_production
   url: <%= ENV['DB_URL'] %>
   pool: 10

@@ -17,7 +17,7 @@ WORKDIR $RAILS_ROOT
 
 # Add gems
 COPY Gemfile* $RAILS_ROOT/
-RUN bundle install
+RUN bundle install --jobs 20 --retry 5 --without development test
 
 # Copy project files
 COPY . $RAILS_ROOT/
@@ -28,4 +28,4 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE $PORT
-CMD ["bash", "-c", "rails server -b 0.0.0.0 -p $PORT"]
+CMD ["bash", "-c", "bundle exec rails server -e production -p $PORT"]
