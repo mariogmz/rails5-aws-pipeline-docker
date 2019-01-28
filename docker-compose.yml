@@ -7,8 +7,10 @@ services:
       POSTGRES_PASSWORD: mariogmz123
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  api:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
     environment:
       DB_HOST: db
       DB_USER: mariogmz
@@ -21,7 +23,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-  web:
+  client:
     image: "node:10-alpine"
     user: "node"
     working_dir: /opt/src/react-app
@@ -32,4 +34,3 @@ services:
     command: "yarn start"
     depends_on:
       - db
-      - api
