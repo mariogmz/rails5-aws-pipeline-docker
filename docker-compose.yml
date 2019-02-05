@@ -18,17 +18,27 @@ services:
       PORT: 3000
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p $${PORT} -b '0.0.0.0'"
     volumes:
-      - .:/opt/src
+      - .:/var/www/current
     ports:
       - "3000:3000"
     depends_on:
       - db
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    volumes:
+      - .:/var/www/current
+    ports:
+      - "80:80"
+    depends_on:
+      - app
   client:
     image: "node:10-alpine"
     user: "node"
-    working_dir: /opt/src/react-app
+    working_dir: /var/www/current/react-app
     volumes:
-      - ./react-app:/opt/src/react-app
+      - ./react-app:/var/www/current/react-app
     ports:
       - "3001:3001"
     command: "yarn start"

@@ -1,5 +1,5 @@
 FROM ruby:2.6
-ENV RAILS_ROOT /opt/src
+ENV RAILS_ROOT /var/www/current
 ENV PORT 3000
 
 # Install dependencies
@@ -12,7 +12,7 @@ RUN apt-get update -qq \
     /var/lib/apt var/lib/dpkg var/lib/cache var/lib/log
 
 # Set working directory
-RUN mkdir $RAILS_ROOT
+RUN mkdir -p $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 # Add gems
