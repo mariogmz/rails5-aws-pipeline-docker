@@ -1,9 +1,11 @@
 version: 1
 task_definition:
   services:
-    api:
+    app:
       cpu_shares: 100
       mem_limit: 262144000
+      essential: true
     web:
       cpu_shares: 100
       mem_limit: 262144000
+      essential: true
