@@ -1,9 +1,20 @@
 version: 1
 task_definition:
+  ecs_network_mode: awsvpc
   services:
-    api:
+    app:
       cpu_shares: 100
       mem_limit: 262144000
+      essential: true
     web:
       cpu_shares: 100
       mem_limit: 262144000
+      essential: true
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-0572d1f0e11226135
+        - subnet-0fcd43e72abcdb3c8
+      security_groups:
+        - sg-0b4eff3de3c551ae3

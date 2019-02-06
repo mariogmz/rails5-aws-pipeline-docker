@@ -5,7 +5,7 @@ ENV PORT 3000
 # Install dependencies
 RUN apt-get update -qq \
   && apt-get install -y  \
-    build-essential nodejs postgresql-client libpq-dev \
+    build-essential vim nodejs postgresql-client libpq-dev \
   && apt-get clean autoclean \
   && apt-get autoremove -y \
   && rm -rf \

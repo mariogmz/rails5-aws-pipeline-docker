@@ -2,3 +2,6 @@
 .elasticbeanstalk/*
 .git
 .gitignore
+
+ # Rails secret key
+ ./config/master.key

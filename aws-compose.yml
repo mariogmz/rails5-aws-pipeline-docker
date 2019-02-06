@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    image: 058523016111.dkr.ecr.us-west-1.amazonaws.com/mariogmz-app:latest
+    env_file:
+      - app-variables.production.env
+    environment:
+      RACK_ENV: production
+      RAILS_ENV: production
+      PORT: 3000
+    command: bash -c "bundle exec rails server -e production -p ${PORT}"
+    ports:
+      - "3000:3000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: mariogmz-app
+        awslogs-region: us-west-1
+        awslogs-stream-prefix: app
+  web:
+    image: 058523016111.dkr.ecr.us-west-1.amazonaws.com/mariogmz-web:latest
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: mariogmz-web
+        awslogs-region: us-west-1
+        awslogs-stream-prefix: web
