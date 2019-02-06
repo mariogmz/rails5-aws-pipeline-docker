@@ -1,18 +1,18 @@
 FROM ruby:2.6
-ENV RAILS_ROOT /opt/src
+ENV RAILS_ROOT /var/www/current
 ENV PORT 3000
 
 # Install dependencies
 RUN apt-get update -qq \
   && apt-get install -y  \
-    build-essential nodejs postgresql-client libpq-dev \
+    build-essential vim nodejs postgresql-client libpq-dev \
   && apt-get clean autoclean \
   && apt-get autoremove -y \
   && rm -rf \
     /var/lib/apt var/lib/dpkg var/lib/cache var/lib/log
 
 # Set working directory
-RUN mkdir $RAILS_ROOT
+RUN mkdir -p $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 # Add gems
