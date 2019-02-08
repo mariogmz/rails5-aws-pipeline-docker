@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Installing npm packages
+      - cd react-app
+      - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building production bundle for client
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - 'react-app/build/**/*'
+  name: $(APP_NAME)-$(AWS_DEFAULT_REGION)-client-$(date +%Y-%m-%d)

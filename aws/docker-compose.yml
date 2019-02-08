@@ -14,7 +14,7 @@ services:
     logging:
       driver: awslogs
       options:
-        awslogs-group: mariogmz-app
+        awslogs-group: mariogmz
         awslogs-region: us-west-1
         awslogs-stream-prefix: app
   web:
@@ -24,7 +24,7 @@ services:
     logging:
       driver: awslogs
       options:
-        awslogs-group: mariogmz-web
+        awslogs-group: mariogmz
         awslogs-region: us-west-1
         awslogs-stream-prefix: web
     links:

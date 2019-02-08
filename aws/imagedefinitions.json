@@ -1,0 +1,10 @@
+[
+    {
+        "name": "app",
+        "imageUri": "058523016111.dkr.ecr.us-west-1.amazonaws.com/mariogmz-app:latest"
+    },
+    {
+        "name": "web",
+        "imageUri": "058523016111.dkr.ecr.us-west-1.amazonaws.com/mariogmz-web:latest"
+    }
+]
