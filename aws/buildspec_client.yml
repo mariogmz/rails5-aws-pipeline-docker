@@ -2,13 +2,13 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo Installing npm packages
+      - cd react-app
+      - npm install
   build:
     commands:
       - echo Build started on `date`
       - echo Building production bundle for client
-      - cd react-app
       - npm run build
   post_build:
     commands:
