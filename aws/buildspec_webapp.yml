@@ -20,5 +20,5 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME-web:$IMAGE_TAG
 artifacts:
   files:
-    - 'imagedefinitions.json'
-  name: $(IMAGE_REPO_NAME)-$(AWS-AWS_DEFAULT_REGION)-$(date +%Y-%m-%d)
+    - 'aws/imagedefinitions.json'
+  name: $(IMAGE_REPO_NAME)-$(AWS_DEFAULT_REGION)-$(date +%Y-%m-%d)
